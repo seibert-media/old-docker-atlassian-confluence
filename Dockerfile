@@ -9,11 +9,13 @@ ENV CONFLUENCE_HOME_DIR 	 /var/opt/confluence
 ENV MYSQL_VERSION 5.1.39
 ENV MYSQL_DRIVER_DOWNLOAD_URL http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-${MYSQL_VERSION}.tar.gz
 
+# install tools for building
 RUN set -x \
     && echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
     && apk update \
     && apk add curl tar xmlstarlet@testing
 
+# download and install Confluence, remove some attributes from server.xml to avoid warnings in catalina log
 RUN DL_PATH=https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-${CONFLUENCE_VERSION}.tar.gz set -x \
     && mkdir -p ${CONFLUENCE_HOME_DIR}/logs \
     && chown -R daemon: ${CONFLUENCE_HOME_DIR} \
@@ -34,6 +36,7 @@ RUN DL_PATH=https://www.atlassian.com/software/confluence/downloads/binary/atlas
         "${CONFLUENCE_INSTALL_DIR}/conf/server.xml" \
     && touch -d "@0"           "${CONFLUENCE_INSTALL_DIR}/conf/server.xml"
 
+# download and put mysql-connector in the right place
 RUN set -x \
     && curl -Ls "${MYSQL_DRIVER_DOWNLOAD_URL}" | tar -xvz --directory "${CONFLUENCE_INSTALL_DIR}/confluence/WEB-INF/lib" \
         --strip-components=1 --no-same-owner "mysql-connector-java-${MYSQL_VERSION}/mysql-connector-java-${MYSQL_VERSION}-bin.jar"
