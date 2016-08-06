@@ -2,11 +2,11 @@ FROM anapsix/alpine-java:8_server-jre
 
 MAINTAINER //SEIBERT/MEDIA GmbH <docker@seibert-media.net>
 
-ENV CONFLUENCE_VERSION       5.10.3
-ENV CONFLUENCE_INSTALL_DIR   /opt/confluence
-ENV CONFLUENCE_HOME_DIR 	 /var/opt/confluence
+ENV CONFLUENCE_VERSION        5.10.3
+ENV CONFLUENCE_INSTALL_DIR    /opt/confluence
+ENV CONFLUENCE_HOME_DIR       /var/opt/confluence
 
-ENV MYSQL_VERSION 5.1.39
+ENV MYSQL_VERSION             5.1.39
 ENV MYSQL_DRIVER_DOWNLOAD_URL http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-${MYSQL_VERSION}.tar.gz
 
 # install tools for building
