@@ -25,5 +25,5 @@ docker run -d -p 8090:8090 -v confluence_data:/var/opt/confluence -e CONFLUENCE_
 Run confluence behind a reverse SSL proxy like nginx and navigate to `https://wiki.yourdomain.com`:
 
 ```bash
-docker run -d -p 8090:8090 -e TOMCAT_PROXY_NAME=wiki.yourdomain.com -e TOMCAT_PROXY_PORT=443 -e TOMCAT_PROXY_SCHEME=https seibertmedia/atlassian-confluence:latest
+docker run -d -e TOMCAT_PROXY_NAME=wiki.yourdomain.com -e TOMCAT_PROXY_PORT=443 -e TOMCAT_PROXY_SCHEME=https seibertmedia/atlassian-confluence:latest
 ```
