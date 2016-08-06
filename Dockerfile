@@ -34,7 +34,7 @@ RUN DL_PATH=https://www.atlassian.com/software/confluence/downloads/binary/atlas
         --delete "Server/Service/Engine/Host/@debug" \
         --delete "Server/Service/Engine/Host/Context/@debug" \
         "${CONFLUENCE_INSTALL_DIR}/conf/server.xml" \
-    && touch -d "@0"           "${CONFLUENCE_INSTALL_DIR}/conf/server.xml"
+    && touch -d "@0" "${CONFLUENCE_INSTALL_DIR}/conf/server.xml"
 
 # download and put mysql-connector in the right place
 RUN set -x \
